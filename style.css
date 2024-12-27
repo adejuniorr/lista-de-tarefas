@@ -81,6 +81,7 @@ h1 {
   position: relative;
   overflow: hidden;
   background-color: #20aa7a;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   padding: 16px;
   text-align: center;
   color: white;
@@ -146,7 +147,7 @@ h1 {
     .edit {
       color: #fff;
       font-weight: bold;
-      background-color: #28ca91;
+      background-color: #20aa7a;
     }
 
     .delete {
