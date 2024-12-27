@@ -15,6 +15,7 @@
           type="text" 
           placeholder="Digite para pesquisar uma tarefa"
           maxlength="50"
+          name="search_task_input"
           id="search-task-input"
         >
       </span>
@@ -92,6 +93,55 @@
         </div>
       </li>
     </ul>
+    <div class="create_task_modal" id="create-task-modal">
+      <span class="close_modal">&times;</span>
+      <h2>Adicionar Tarefa</h2>
+      <div class="input_row">
+        <label for="task-date-conclusion-input">
+          Título
+        </label>
+        <span class="input_field">
+          <input
+            type="text"
+            placeholder="Digite um título"
+            maxlength="50"
+            name="task_title_input"
+            id="task-title-input"
+          >
+        </span>
+      </div>
+      <div class="input_row">
+        <label for="task-date-conclusion-input">
+          Descrição
+        </label>
+        <span class="input_field">
+          <textarea
+            name="task_description_input"
+            id="task-description-input"
+            rows="3"
+            placeholder="Digite uma descrição para a tarefa"
+          ></textarea>
+        </span>
+      </div>
+      <div class="input_row">
+        <label for="task-date-conclusion-input">
+          Data de Conclusão
+        </label>
+        <span class="input_field">
+          <input
+            type="date"
+            name="task_date_conclusion_input"
+            id="task-date-conclusion-input"
+          >
+        </span>
+      </div>
+      <button 
+        class="primary_button" 
+        id="create-task-button"
+      >
+        <span>Criar Tarefa</span>
+      </button>
+    </div>
   </main>
   <script src="script.js"></script>
 </body>
