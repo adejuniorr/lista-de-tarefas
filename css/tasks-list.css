@@ -1,0 +1,47 @@
+.tasks_list {
+  list-style-type: none;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0 8px 0 0;
+
+  li {
+    background-color: #fff;
+    display: flex;
+    align-items: top;
+    gap: 8px;
+    padding: 12px;
+    margin-top: 8px;
+
+    .name_and_date {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+
+      .task_name {
+        overflow: hidden;
+        word-wrap: break-word;
+        display: -webkit-box;
+        font-size: 18px;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .task_conclusion_date {
+        font-weight: bold;
+      }
+    }
+      
+    .buttons {
+      width: 40%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}

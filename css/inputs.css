@@ -1,0 +1,53 @@
+.input_row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.input_field {
+  width: 100%;
+  display: flex;
+  background: #fff;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px #aaa;
+
+  input {
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 16px;
+  }
+
+  &:has(input:focus) {
+    outline: 3px solid #20aa7a;
+  }
+
+  textarea {
+    resize: none;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: "Lato", serif;
+  }
+  
+  input[type="date"] {
+    font-family: "Lato", serif;
+    
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+    }
+  }
+}
+
+.error_msg {
+  color: #d92929;
+  font-style: italic;
+}
