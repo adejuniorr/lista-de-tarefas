@@ -50,6 +50,8 @@ function handleCreateNewTask(e) {
     conclusionDate: taskConclusionDate,
   };
 
+  addToTaskList(task);
+
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   localStorage.setItem("tasks", JSON.stringify([...tasks, task]));
 
@@ -67,4 +69,42 @@ function toggleTaskModal() {
   createTaskForm.reset();
 
   createTaskModal.setAttribute("style", isOpen ? "display: none;" : "display: flex;");
+}
+
+// List tasks
+const tasksList = document.querySelector("#tasks-list");
+
+window.addEventListener("load", () => {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks.forEach((task) => addToTaskList(task));
+});
+
+function addToTaskList(task) {
+  const taskItem = document.createElement("li");
+
+  taskItem.innerHTML = `
+    <div class="name_and_date">
+      <p class="task_name">${task.name}</p>
+      <p class="task_conclusion_date">Para: ${getFormattedDate(new Date(task.conclusionDate))}</p>
+    </div>
+    <div class="buttons">
+      <button class="edit" id="edit-task">Editar</button>
+      <button class="delete" id="delete-task">Excluir</button>
+    </div>
+  `;
+
+  tasksList.appendChild(taskItem);
+}
+
+function getFormattedDate(date) {
+  var year = date.getFullYear();
+
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  
+  return month + '/' + day + '/' + year;
 }

@@ -165,20 +165,34 @@ h1 {
     padding: 12px;
     margin-top: 8px;
 
-    p {
-      width: 100%;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      line-clamp: 2;
-      -webkit-line-clamp: 2;
-    }
-
-    div {
+    .name_and_date {
+      width: 70%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: space-between;
-      min-width: 145px;
+      gap: 8px;
+
+      .task_name {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        font-size: 18px;
+      }
+
+      .task_conclusion_date {
+        font-weight: bold;
+      }
+    }
+      
+    .buttons {
+      width: 30%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     
     .edit, .delete {
