@@ -1,3 +1,39 @@
+// Pre-tasks
+document.addEventListener("DOMContentLoaded", function () {
+  if (!localStorage.getItem("tasks")) {
+    const preTasks = [
+      {
+        name: "Revisar proposta do cliente",
+        description: "Analisar a proposta enviada pelo cliente para garantir que todos os requisitos foram cobertos.",
+        conclusionDate: "2024-12-30",
+      },
+      {
+        name: "Preparar relatório mensal",
+        description: "Criar um relatório com os principais indicadores de desempenho do mês.",
+        conclusionDate: "2025-01-03",
+      },
+      {
+        name: "Atualizar documentação do projeto",
+        description: "Revisar e atualizar a documentação técnica com as mudanças feitas na última sprint.",
+        conclusionDate: "2025-01-05",
+      },
+      {
+        name: "Planejar reunião de equipe",
+        description: "Organizar a pauta e os materiais necessários para a reunião de planejamento trimestral.",
+        conclusionDate: "2025-01-02",
+      },
+      {
+        name: "Enviar orçamento para novo cliente",
+        description: "Preparar e enviar o orçamento solicitado pelo cliente potencial.",
+        conclusionDate: "2024-12-31",
+      },
+    ];
+
+    localStorage.setItem("tasks", JSON.stringify(preTasks));
+  }
+});
+
+
 // Create new task
 const openModal = document.querySelector("#add-task");
 const closeModal = document.querySelector("#close-modal");
@@ -25,9 +61,6 @@ function handleCreateNewTask(e) {
   const taskDescription = taskDescriptionInput.value;
   const taskConclusionDate = taskConclusionDateInput.value;
 
-  console.log(taskConclusionDate);
-  
-
   if (!taskTitle) {
     tasktTitleError.textContent = "Por favor, digite um título";
   }
@@ -50,13 +83,13 @@ function handleCreateNewTask(e) {
     conclusionDate: taskConclusionDate,
   };
 
-  addToTaskList(task);
-
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  
   localStorage.setItem("tasks", JSON.stringify([...tasks, task]));
 
   createTaskForm.reset();
   toggleTaskModal();
+  window.location.reload();
 }
 
 function toggleTaskModal() {
@@ -86,7 +119,7 @@ function addToTaskList(task) {
   taskItem.innerHTML = `
     <div class="name_and_date">
       <p class="task_name">${task.name}</p>
-      <p class="task_conclusion_date">Para: ${getFormattedDate(new Date(task.conclusionDate))}</p>
+      <p class="task_conclusion_date">Para: ${getFormattedDateString(task.conclusionDate)}</p>
     </div>
     <div class="buttons">
       <button class="edit" id="edit-task">Editar</button>
@@ -97,14 +130,46 @@ function addToTaskList(task) {
   tasksList.appendChild(taskItem);
 }
 
-function getFormattedDate(date) {
-  var year = date.getFullYear();
+function getFormattedDateString(dateString) {
+  const day = dateString.split("-")[2];
+  const month = dateString.split("-")[1];
+  const year = dateString.split("-")[0];
 
-  var month = (1 + date.getMonth()).toString();
-  month = month.length > 1 ? month : '0' + month;
+  return `${day}/${month}/${year}`;
+}
 
-  var day = date.getDate().toString();
-  day = day.length > 1 ? day : '0' + day;
+// Search task
+const searchInput = document.querySelector("#search-task-input");
+
+searchInput.addEventListener("input", handleSearchTask);
+
+function handleSearchTask(e) {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  const filteredTasks = tasks.filter((task) => task.name.toLowerCase().includes(e.target.value.toLowerCase()));
+
+  tasksList.innerHTML = "";
+
+  filteredTasks.forEach((task) => addToTaskList(task));
+}
+
+// Delete task
+window.addEventListener("load", () => {
+  const deleteTaskButtons = document.querySelectorAll("button.delete");
   
-  return month + '/' + day + '/' + year;
+  deleteTaskButtons.forEach((button) => {
+    button.addEventListener("click", handleDeleteTask);
+  });
+});
+
+function handleDeleteTask(e) {
+  const taskName = e.target.parentElement.parentElement.querySelector(".task_name").textContent;
+
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  const updatedTasks = tasks.filter((task) => task.name !== taskName);
+
+  localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
+  e.target.parentElement.parentElement.remove();
 }
