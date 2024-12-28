@@ -19,16 +19,16 @@
           id="search-task-input"
         >
       </span>
-      <button class="primary_button" id="add-task"><span>Adicionar Tarefa</span></button>
+      <button class="primary_button" id="add-task-button"><span>Adicionar Tarefa</span></button>
     </div>
     <ul class="tasks_list" id="tasks-list">
     </ul>
     <div class="create_task_modal" id="create-task-modal">
-      <span class="close_modal" id="close-modal">&times;</span>
+      <span class="close_modal" id="close-create-modal">&times;</span>
       <h2>Adicionar Tarefa</h2>
       <form id="create-task-form">
         <div class="input_row">
-            <label for="task-date-conclusion-input">
+            <label for="create-task-title-input">
               Título
             </label>
             <span class="input_field">
@@ -36,46 +36,100 @@
                 type="text"
                 placeholder="Digite um título"
                 maxlength="50"
-                name="task_title_input"
-                id="task-title-input"
+                name="create_task_title_input"
+                id="create-task-title-input"
               >
           </span>
-          <p class="error_msg" id="title-error"></p>
+          <p class="error_msg" id="create-title-error"></p>
         </div>
         <div class="input_row">
-          <label for="task-date-conclusion-input">
+          <label for="create-task-description-input">
             Descrição
           </label>
           <span class="input_field">
             <textarea
-              name="task_description_input"
-              id="task-description-input"
+              name="create-task_description_input"
+              id="create-task-description-input"
               rows="3"
               placeholder="Digite uma descrição para a tarefa"
             ></textarea>
           </span>
-          <p class="error_msg" id="description-error"></p>
+          <p class="error_msg" id="create-description-error"></p>
         </div>
         <div class="input_row">
-          <label for="task-date-conclusion-input">
+          <label for="create-task-conclusion-date-input">
             Data de Conclusão
           </label>
           <span class="input_field">
             <input
               type="date"
-              name="task_date_conclusion_input"
-              id="task-conclusion-date-input"
-              min=""
+              name="create-task_date_conclusion_input"
+              id="create-task-conclusion-date-input"
             >
           </span>
-          <p class="error_msg" id="conclusion-date-error"></p>
+          <p class="error_msg" id="create-conclusion-date-error"></p>
         </div>
         <button
           type="submit"
           class="primary_button" 
-          id="create-task-button"
         >
           <span>Criar Tarefa</span>
+        </button>
+      </form>
+    </div>
+    <div class="edit_task_modal" id="edit-task-modal">
+      <span class="close_modal" id="close-edit-modal">&times;</span>
+      <h2>Editar Tarefa</h2>
+      <form id="edit-task-form">
+        <div class="input_row">
+            <label for="edit-task-title-input">
+              Título
+            </label>
+            <span class="input_field">
+              <input
+                type="text"
+                placeholder="Digite um título"
+                maxlength="50"
+                name="edit_task_title_input"
+                id="edit-task-title-input"
+              >
+          </span>
+          <p class="error_msg" id="edit-title-error"></p>
+        </div>
+        <div class="input_row">
+          <label for="edit-task-description-input">
+            Descrição
+          </label>
+          <span class="input_field">
+            <textarea
+              name="edit_task_description_input"
+              id="edit-task-description-input"
+              rows="3"
+              placeholder="Digite uma descrição para a tarefa"
+            ></textarea>
+          </span>
+          <p class="error_msg" id="edit-description-error"></p>
+        </div>
+        <div class="input_row">
+          <label for="edit-task-conclusion-date-input">
+            Data de Conclusão
+          </label>
+          <span class="input_field">
+            <input
+              type="date"
+              name="edit_task_date_conclusion_input"
+              id="edit-task-conclusion-date-input"
+              min=""
+            >
+          </span>
+          <p class="error_msg" id="edit-conclusion-date-error"></p>
+        </div>
+        <button
+          type="submit"
+          class="primary_button" 
+          id="edit-task-button"
+        >
+          <span>Salvar Alterações</span>
         </button>
       </form>
     </div>
